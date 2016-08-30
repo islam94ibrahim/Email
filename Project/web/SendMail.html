@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Send New Email</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="mystyle.css">
+        <script>
+            function sendajax() {
+                var name = document.forms["form1"]["To"].value;
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.open("Get", "CheckSender?name=" + name, true);
+                xmlhttp.send();
+                xmlhttp.onreadystatechange = function ()
+                {
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        document.getElementById("show_response").innerHTML = xmlhttp.responseText;
+                    }
+                }
+            }
+            function Check(){
+            var Title=document.forms["form1"]["Title"].value;
+            var Content=document.forms["form1"]["Content"].value;
+            
+            if (Title == "" || Content == ""){
+                alert("There is an empty field");
+                return false;
+            }
+        }
+        </script>
+    </head>
+    <body>
+        <form name="form1" method="post" action="NewEmail" >
+            <table align="center">
+            <tr>
+                <td>To</td>
+                <td><input type="text" name="To"/></td>
+                <td><input type="button" value="Check Reciver" onclick="sendajax()"/></td>
+                <td><div id="show_response"></div></td>
+            </tr>
+            <tr>
+                <td>Title</td>
+                <td><input type="text" name="Title" /></td>
+            </tr>
+            <tr>
+                <td>Content</td>
+                <td><textarea name="Content"></textarea></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Send Mail" onclick="return Check()" /></td>
+            </tr>
+            </table>
+        </form>
+    </body>
+</html>

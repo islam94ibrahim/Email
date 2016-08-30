@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Sign Up</title>
+        <link rel="stylesheet" type="text/css" href="mystyle.css">
+         <script>        
+        function sendajax() {
+                var name = document.forms["form1"]["UserName"].value;
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.open("Get", "CheckUser?name=" + name, true);
+                xmlhttp.send();
+                xmlhttp.onreadystatechange = function ()
+                {
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        document.getElementById("show_response").innerHTML = xmlhttp.responseText;
+                    }
+                }
+            }
+        function Check (){
+            var Name=document.forms["form1"]["Name"].value;
+            var UserName=document.forms["form1"]["UserName"].value;
+            var Password=document.forms["form1"]["Password"].value;
+            var Age=document.forms["form1"]["Age"].value;
+            var Gender=document.forms["form1"]["Gender"].value;
+            var Phone=document.forms["form1"]["Phone"].value;
+            var Country=document.forms["form1"]["Country"].value;
+            
+            if (Name=="" || UserName=="" || Password=="" || Age=="" || Gender=="" || Phone=="" || Country==""){
+                alert("There is empty field");
+                return false;
+            }
+            else if (Name.length >15){
+                alert ("Maximum First Name length is 15");
+                return false;
+            }
+            else if (UserName.length >30){
+                alert ("Maximum User Name length is 30");
+                return false;
+            }
+            else if (Password.length != 7){
+                    alert("Password must be of length 7");
+                    return false;
+                }
+            else if (isNaN(Age) || isNaN(Phone)){
+                alert("Age/Phone must be number");
+                return false;
+            }
+            else if (Gender.length >6){
+                alert ("Maximum Gender length is 6");
+                return false;
+            }
+            else if (Country.length >20){
+                alert ("Maximum Gender length is 20");
+                return false;
+            }
+        }
+    </script>
+    </head>
+   
+    <body>
+        <h2 style="margin-left:500px;color: blue">FCI Mail</h2>
+        <form name="form1" method="post" action="Register" >
+        <table align="center">
+            <tr><td><b>Sign up</b></td></tr>
+            <tr>
+                <td>First Name</td>
+                <td><input type="text" name="Name" /></td>
+            </tr>
+            <tr>
+                <td>User Name</td>
+                <td><input type="text" name="UserName"/></td>
+                <td><input type="button" value="Check User" onclick="sendajax()"/></td>
+                <td><div id="show_response"></div></td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type="password" name="Password"/></td>
+            </tr>
+            <tr>
+                <td>Age</td>
+                <td><input type="text" name="Age"/></td>
+            </tr>
+            <tr>
+                <td>Gender</td>
+                <td><input type="text" name="Gender"/></td>
+            </tr>
+            <tr>
+                <td>Phone</td>
+                <td><input type="text" name="Phone"/></td>
+            </tr>
+            <tr>
+                <td>Country</td>
+                <td><input type="text" name="Country"/></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td style="text-align: right"><input style="background-color: blue;color: white" type="submit" value="Creat Account"
+                                                     onclick="return Check()"/></td>
+            </tr>
+        </table>
+        </form>
+    </body>
+</html>

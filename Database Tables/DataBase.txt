@@ -1,0 +1,35 @@
+Create Table user
+( 
+UserName varchar(30) Primary Key,
+Password varchar(7)
+);
+
+Create Table email
+(
+EmailId int primary key AUTO_INCREMENT,
+Sender varchar(30) References user(UserName),
+Reciver varchar(30) References user(UserName),
+Content text,
+Date Date,
+Type int,
+Title varchar(100)
+);
+
+Create Table UserInfo
+(
+UserName varchar(30) References user(UserName),
+Name varchar(15),
+Age int,
+Gender varchar(6),
+Phone int,
+Country varchar(20),
+primary key (UserName)
+);
+
+Create Table Replay
+(
+UserName varchar(30) References user(UserName),
+EmailId int References email(EmailId),
+Content text,
+Date Date
+);

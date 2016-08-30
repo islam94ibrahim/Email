@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Log in Page</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="mystyle.css">
+        <script>
+            function Check (){
+                var UserName=document.forms["form1"]["UserName"].value;
+                var Password=document.forms["form1"]["Password"].value;
+                
+                if (UserName == "" || Password == ""){
+                    alert("There is empty field");
+                    return false;
+                }
+                else if (UserName.length >30){
+                    alert ("Maximum User Name length is 30");
+                    return false;
+                }
+                else if (Password.length != 7){
+                    alert("Password must be of length 7");
+                    return false;
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <h1 style="margin-left:500px">Welcome to FCI Mail</h1>
+        <h2 align="center">Sign in to you account</h2>
+        <br>
+        <form name="form1" method="POST" action="CheckLogin">
+        <table align="center">
+            <tr>
+            <td>User Name</td>
+            <td><input type="text" name="UserName"/></td>
+            </tr>
+            <tr>
+            <td> Password</td>
+            <td><input type="password" name="Password"/></td>
+            </tr>
+            <tr>
+            <td></td>
+            <td style="text-align: center"> <input style="background-color: blue;color: white" type="submit" value="Sign In"
+                                                   onclick="return Check();"/></td>
+            </tr>
+        </table>
+        </form>
+        <br>
+        <h3 style="text-align: center">New to FCI Mail ?</h3>
+        <div style="text-align:center">    
+        <a  href="SignUp.html">Sign up for a new account</a>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Search for Email</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="mystyle.css">
+        <script>
+            function Check(){
+                var dateReg = /^(\d{4})\-(\d{2})\-(\d{2})$/;
+                var From=document.forms["form1"]["From"].value;
+                var To=document.forms["form1"]["To"].value;
+                if (!From.match(dateReg) || !To.match(dateReg)){
+                    alert ("Dates must match the format (yyyy-mm-dd)");
+                    return false;
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <h3 style="text-align: center;color: blue">Enter date range</h3>
+        <form name="form1" action="viewSearchMails.jsp">
+        <table align="center">
+            <tr>
+                <td>From:<input type="text" name="From" value="yyyy-mm-dd"/></td>
+                <td>to:<input type="text" name="To" value="yyyy-mm-dd"/></td>
+            </tr>
+            <tr>
+                <td style="text-align: right"><input type="submit" value="Search" onclick="return Check();"/></td>
+            </tr>
+        </table>
+         </form>
+    </body>
+</html>
